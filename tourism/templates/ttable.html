@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                background-image: url("/static/homebg2.jpg");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                background-size: cover;
+            }
+            table{
+                background: rgba(455, 455, 455, .5);
+            }   
+            h1{
+                background: rgba(655, 655, 655, .4);
+                color:darkorange;
+                align-content: center;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding-left: 1%;
+                padding-right: 1%;
+            }
+            u{
+                text-decoration-color:dodgerblue;
+            }
+            h1{
+                background: rgba(455, 455, 455, .5);
+                color: darkorange;
+                margin-right: 410px;
+                margin-left: 410px;
+                border: 1px solid red;
+                padding: 1%;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body><center>
+        <h1>Customer Travel Data</h1>
+        <table border="1">
+            <th>update</th>
+            <th>No.</th>
+            <th>From</th>
+            <th>To</th>
+            <th>departure</th>
+            <th>Return</th>
+            <th>Email</th>
+            <th>Adult</th>
+            <th>Child</th>
+            <th>Image</th>
+            <th>delete</th>
+        
+        {% for x in customer %}
+        <tr>
+            <td><a href="/update/{{x.id}}">{{x.id}}</a></td>
+            <td>{{ x.id }}</td>
+            <td>{{ x.fromm }}</td>
+            <td>{{ x.to }}</td>
+            <td>{{ x.departure }}</td>
+            <td>{{ x.returnn }}</td>
+            <td>{{ x.email }}</td>
+            <td>{{ x.adult }}</td>
+            <td>{{ x.child }}</td>
+            <!-- <td><img src="/media/{{x.image_x}}" alt="" srcset=""></td> -->
+            <td><a href="/media/{{x.image_x}}">Download Image</a></td>
+            <td><a href="/delete/{{x.id}}">delete</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+        <br>
+
+        <a href="/homeadd/">Fill Travel Form </a>
+    </center></body>
+</html>

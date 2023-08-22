@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="addrecord/" method="post">
+            {% csrf_token %}
+            Name:<br>
+            <input type="text" id="name" name="name">
+            <br>
+            <input type="submit" value="Submit">
+            
+        </form>
+    </body>
+</html>

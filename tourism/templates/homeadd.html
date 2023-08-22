@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html><head>
+    <style>
+        html{
+            background-image: url("/static/homebg3.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        img{
+                height: 150px;
+                width: 200px;
+                border-radius: 15px;
+            }
+        img:hover{
+                scale: 1.1;
+            }
+
+        #form{
+                float: right;
+                margin-right: 350px;
+                margin-left: 150px;
+                margin-top: -20px;
+                background-color: antiquewhite;
+                font-size: 22px;
+                border: 1px solid red;
+                padding-left: 2%;
+                padding-top: 2%;
+                padding-right: 2%;
+                padding-bottom: 2%;
+                background: transparent;
+                box-shadow: none;
+                color: black;
+                background: rgba(455, 455, 455, .5);
+                font-weight: 650;
+                font-family: cursive;
+            }
+            #submit:hover{
+                scale: 1.1;
+                background-color:royalblue;
+                color: azure;
+            }
+            #submit{
+                font-weight: 500;
+                font-size: 19px;
+            }
+            #from,#to,#ddate,#rdate,#travel,#submit{
+                border-radius: 12px;
+            }
+            #h{
+                background: rgba(655, 655, 655, .4);
+                color:darkorange;
+                float: right;
+                margin-right: 550px;
+                margin-top: 20px;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding-left: 1%;
+                padding-right: 1%;
+            }
+            u{
+                text-decoration-color:dodgerblue;
+            }
+            
+    </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+    <body>
+        <img src="/static/logo1.jpg">
+        <div id="h">
+            <h1><u><i>Travel Form </i></h1></u>
+        </div>
+        <div align="center" id="form">
+        <form id="myForm" action="/addrecord/" method="get" enctype="multipart/form-data" border:5px red double>
+            {% csrf_token %}
+            <br>
+            <label for="from">From</label>
+            <input type="text" name="from" id="from" placeholder="ex: pune">
+
+            <label for="to">To</label>
+            <input type="text" name="to" id="to" placeholder="ex: delhi">
+            <br>
+            <br>
+            <label for="ddate">Departure</label>
+            
+            <input type="date" name="ddate" id="ddate">
+            
+            <label for="rdate">Return</label>
+            <input type="date" name="rdate" id="rdate" >
+            <br>
+            <br>
+            <label for="image">Upload Image</label>
+            <input type="file" name="image_x" id="image_x" required>
+            <br>
+            <br>
+            <label for="email">Email</label>
+            <input type="email" name="email">
+            <br>
+            <br>
+            <label for="travel">Select Travellers - </label>
+            Adults<input type="number" name="adult" id="adult" min="1" max="20" >
+            Child<input type="number" name="child" id="child" min="0" max="10" >
+            <br>
+            <br>
+            <div class="g-recaptcha" data-sitekey='6LeBzoonAAAAAC2KJiHn-gJ0xFPnBgtYdlYdlRgg'  ></div>
+            <br>
+            <input type="submit" value="submit" id="submit">
+        </form></div>
+        <script>
+            // captcha
+
+    // Attach a listener to the form's submit event
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        // event.preventDefault();1 // Prevent the form from submitting normally
+        verifyCaptchaAndSubmit();
+    });
+
+    // Function to verify reCAPTCHA and submit the form
+    function verifyCaptchaAndSubmit() {
+        var captchaResponse = grecaptcha.getResponse(); // Get reCAPTCHA response
+        if (captchaResponse.length === 0) {
+            alert("Invalid Captcha 🛑");
+            return;
+        }
+
+        // Process the form submission or perform any other actions here
+        // You can use fetch or XMLHttpRequest to send data to your server
+        // ...
+
+        // For demonstration purposes, we'll just show an alert
+        alert("Form submitted successfully ✅");
+    }
+        </script>
+        <!-- <script>
+            document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+            
+                // Disable the submit button while reCAPTCHA is being verified
+                var submitButton = document.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+            
+                // Get the reCAPTCHA response
+                var recaptchaResponse = grecaptcha.getResponse();
+            
+                // Send the reCAPTCHA response to the server for verification
+                fetch('verify_recaptcha.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'g-recaptcha-response=' + recaptchaResponse
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // reCAPTCHA verification succeeded, submit the form
+                        document.getElementById('myForm').submit();
+                        alert('hi');
+                    } else {
+                        // reCAPTCHA verification failed, enable the submit button
+                        submitButton.disabled = false;
+                        alert('reCAPTCHA verification failed. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error verifying reCAPTCHA:', error);
+                    submitButton.disabled = false;
+                });
+            });
+            </script> -->
+            
+    </body>
+</html>

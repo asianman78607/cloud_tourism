@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                background-image: url("/static/homebg2.jpg");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                background-size: cover;
+            }
+            #form{
+                float: right;
+                margin-right: 350px;
+                margin-left: 150px;
+                margin-top: 50px;
+                background-color: antiquewhite;
+                font-size: 22px;
+                border: 1px solid red;
+                padding-left: 2%;
+                padding-top: 2%;
+                padding-right: 2%;
+                padding-bottom: 2%;
+                background: transparent;
+                box-shadow: none;
+                color: black;
+                background: rgba(455, 455, 455, .5);
+                font-weight: 650;
+                font-family: cursive;
+            }
+            #update:hover{
+                scale: 1.1;
+                background-color:royalblue;
+                color: azure;
+            }
+            #update{
+                font-weight: 500;
+                font-size: 19px;
+            }
+            #from,#to,#ddate,#rdate,#travel,#update{
+                border-radius: 12px;
+            }
+            h1{
+                background: rgba(655, 655, 655, .4);
+                color:darkorange;
+                float: right;
+                margin-right: 500px;
+                margin-top: 80px;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding-left: 1%;
+                padding-right: 1%;
+            }
+            u{
+                text-decoration-color:dodgerblue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1><u>Update Form</h1></u>
+        <div align="center" id="form">
+            <form action="/homeupdate/{{customer.id}}" method="post" border:5px red double>
+                {% csrf_token %}
+                <br>
+                <label for="from">From</label>
+                <input type="text" name="from" value="{{customer.fromm}}" id="from" placeholder="ex: pune">
+    
+                <label for="to">To</label>
+                <input type="text" name="to" value="{{customer.to}}" id="to" placeholder="ex: delhi">
+                <br>
+                <br>
+                <label for="ddate">Departure</label>
+                
+                <input type="date"  name="ddate" value="{{customer.departure}}" id="ddate">
+                
+                <label for="rdate">Return</label>
+                <input type="date" name="rdate" value="{{customer.returnn}}" id="rdate" >
+                <br>
+                <br>
+                <label for="email">Email</label>
+                <input type="email" name="email">
+                <br>
+                <br>
+                <label for="travel">Select Travellers - </label>
+                Adults<input type="number" name="adult" value="{{customer.adult}}" id="adult" min="1" max="2" value="Adults">
+                Child<input type="number" name="child" value="child" id="{{customer.child}}" min="0" max="2" value="Child">
+                <br>
+                <br>
+                <input type="submit" value="update" id="update">
+            </form></div>
+    </body>
+</html>

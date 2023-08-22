@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Information</h1>
+        <table border="1">
+        {% for x in mymembers %}
+        <tr>
+            <td>{{ x.id }}</td>
+            <td>{{ x.name }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        <a href="add/">Add Names</a>
+    </body>
+</html>
